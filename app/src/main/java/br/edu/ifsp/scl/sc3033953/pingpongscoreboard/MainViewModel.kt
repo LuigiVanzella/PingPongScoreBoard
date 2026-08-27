@@ -3,6 +3,7 @@ package br.edu.ifsp.scl.sc3033953.pingpongscoreboard
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,4 +41,21 @@ class PingPongViewModelFlow : ViewModel(){
         _uiState.value = MatchState(0,0)
     }
 
+}
+
+
+//----------------------------------------------
+//ETAPA4: ViewModel + SavedStateHandle
+//---------------------------------------------
+
+class PingPongViewModelSavedState(private val savedStateHandle: SavedStateHandle) : ViewModel(){
+    val scoraA = savedStateHandle.getStateFlow("scoreA", 0)
+    val scoraB = savedStateHandle.getStateFlow("scoreB", 0)
+
+    fun incrementA(){savedStateHandle["scoreA"] = scoraA.value + 1}
+    fun incrementB(){savedStateHandle["scoreB"] = scoraA.value + 1}
+    fun reset(){
+        savedStateHandle["scoreA"] = 0
+        savedStateHandle["scoreB"] = 0
+    }
 }

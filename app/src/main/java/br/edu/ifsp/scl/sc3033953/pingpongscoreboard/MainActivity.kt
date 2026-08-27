@@ -141,5 +141,22 @@ fun PingPongScreenFlow(viewModel: PingPongViewModelFlow = viewModel()) {
     )
 }
 
+//-----------------------
+//ETAPA 4
+//-----------------------
+@Composable
+fun PingPongScreenSavedState(viewModel: PingPongViewModelSavedState = viewModel()){
+    val scoraA by viewModel.scoraA.collectAsState()
+    val scoraB by viewModel.scoraB.collectAsState()
+
+    PingPongScoreBoard(
+        scoraA, scoraB,
+        viewModel::incrementA,
+        viewModel::incrementB,
+        viewModel::reset,
+        "Etapa 4: ViewModel + SavedStateHandle"
+    )
+}
+
 
 
