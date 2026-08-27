@@ -4,6 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 
 //----------------------------------------
@@ -18,4 +20,24 @@ class PingPongViewModelState : ViewModel() {
     fun incrementA() { scoreA++ }
     fun incrementB() { scoreB++ }
     fun reset() { scoreA = 0; scoreB = 0 }
+}
+
+
+//----------------------------------------------
+//ETAPA3: ViewModel + stateFlow
+//---------------------------------------------
+class PingPongViewModelFlow : ViewModel(){
+    private val _uiState = MutableStateFlow(MatchState())
+    val uiState = _uiState.asStateFlow()
+
+    fun incrementA(){
+        _uiState.value = _uiState.value.copy(scoreA = _uiState.value.scoreA + 1)
+    }
+    fun incrementB(){
+        _uiState.value = _uiState.value.copy(scoreB = _uiState.value.scoreB + 1)
+    }
+    fun reset(){
+        _uiState.value = MatchState(0,0)
+    }
+
 }

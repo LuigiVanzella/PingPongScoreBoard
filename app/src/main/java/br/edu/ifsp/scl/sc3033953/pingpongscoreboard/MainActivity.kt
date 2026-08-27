@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -120,6 +121,23 @@ fun PingPongScreenState(viewModel: PingPongViewModelState = viewModel()) {
         viewModel::incrementA, viewModel::incrementB,
         viewModel::reset,
         "Etapa 2: ViewModel + mutableStateOf"
+    )
+}
+
+//---------------------
+//ETAPA 3
+//---------------------
+
+@Composable
+fun PingPongScreenFlow(viewModel: PingPongViewModelFlow = viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
+    PingPongScoreBoard(
+        uiState.scoreA,
+        uiState.scoreB,
+        viewModel::incrementA,
+        viewModel::incrementB,
+        viewModel::reset,
+        "Etapa 3: ViewModel + StateFlow"
     )
 }
 
