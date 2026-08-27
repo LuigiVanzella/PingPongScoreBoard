@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -47,7 +48,7 @@ class MainActivity : ComponentActivity() {
                     //PingPongScreenRemember()
                     //PingPongScreenState()
                     //PingPongScreenFlow()
-                    //PingPongScreenSaveState()
+                    PingPongScreenSavedState()
                 }
             }
         }
@@ -83,8 +84,15 @@ fun PingPongScoreBoard(
                 Text(text = "$scoreB", fontSize = 18.sp)
                 Button(onClick = onIncrementB) { Text("+1")}
             }
-            Spacer(modifier = Modifier.height(32.dp))
-            Button(onClick = onReset) { Text("Reiniciar Partida")}
+
+        }
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Button(onClick = onReset) {
+                    Text("Reiniciar Partida")
+                }
+            }
 
         }
     }
@@ -150,7 +158,8 @@ fun PingPongScreenSavedState(viewModel: PingPongViewModelSavedState = viewModel(
     val scoraB by viewModel.scoraB.collectAsState()
 
     PingPongScoreBoard(
-        scoraA, scoraB,
+        scoraA,
+        scoraB,
         viewModel::incrementA,
         viewModel::incrementB,
         viewModel::reset,

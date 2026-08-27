@@ -53,7 +53,7 @@ class PingPongViewModelSavedState(private val savedStateHandle: SavedStateHandle
     val scoraB = savedStateHandle.getStateFlow("scoreB", 0)
 
     fun incrementA(){savedStateHandle["scoreA"] = scoraA.value + 1}
-    fun incrementB(){savedStateHandle["scoreB"] = scoraA.value + 1}
+    fun incrementB(){savedStateHandle["scoreB"] = scoraB.value + 1}
     fun reset(){
         savedStateHandle["scoreA"] = 0
         savedStateHandle["scoreB"] = 0

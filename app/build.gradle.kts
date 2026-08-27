@@ -6,7 +6,7 @@ plugins {
 android {
     namespace = "br.edu.ifsp.scl.sc3033953.pingpongscoreboard"
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
@@ -14,6 +14,7 @@ android {
     defaultConfig {
         applicationId = "br.edu.ifsp.scl.sc3033953.pingpongscoreboard"
         minSdk = 26
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
