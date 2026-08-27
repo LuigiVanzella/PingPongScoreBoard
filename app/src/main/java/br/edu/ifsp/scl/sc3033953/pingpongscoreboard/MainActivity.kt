@@ -31,6 +31,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import br.edu.ifsp.scl.sc3033953.pingpongscoreboard.ui.theme.PingPongScoreBoardTheme
 
 class MainActivity : ComponentActivity() {
@@ -106,4 +108,20 @@ fun PingPongScreenRemember(){
     )
 
 }
+
+
+//------------
+//ETAPA 2
+//------------
+@Composable
+fun PingPongScreenState(viewModel: PingPongViewModelState = viewModel()) {
+    PingPongScoreBoard(
+        viewModel.scoreA, viewModel.scoreB,
+        viewModel::incrementA, viewModel::incrementB,
+        viewModel::reset,
+        "Etapa 2: ViewModel + mutableStateOf"
+    )
+}
+
+
 
