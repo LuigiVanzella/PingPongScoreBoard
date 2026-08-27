@@ -20,6 +20,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -83,4 +88,22 @@ fun PingPongScoreBoard(
 
 }
 
+
+// ------------------------------------------------
+//TELAS DAS ETAPAS
+// ------------------------------------------------
+
+//----------------
+//ETAPA 1
+//----------------
+@Composable
+fun PingPongScreenRemember(){
+    var scoreA by remember { mutableIntStateOf(0) }
+    var scoreB by remember {mutableIntStateOf(0)}
+    PingPongScoreBoard(
+        scoreA,scoreB,{scoreA ++}, {scoreB++}, {scoreA = 0; scoreB = 0},
+        "Etapa 1: Remember"
+    )
+
+}
 
